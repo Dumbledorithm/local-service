@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Swiper Styles */
+
 .swiper-button-next,
 .swiper-button-prev {
-  color: #3b82f6 !important; /* Your primary blue color */
+  color: #3b82f6 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #3b82f6 !important; /* Your primary blue color */
+  background-color: #3b82f6 !important; 
 }
