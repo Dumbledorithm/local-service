@@ -23,10 +23,10 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="hero min-h-[80vh]">
+      <div className="card w-full max-w-sm shrink-0 shadow-2xl bg-base-100">
         <form className="card-body" onSubmit={handleSubmit}>
-          <h2 className="card-title text-2xl">Login</h2>
+          <h2 className="card-title text-3xl font-display font-bold">Welcome Back!</h2>
           <div className="form-control">
             <label className="label"><span className="label-text">Email</span></label>
             <input type="email" name="email" placeholder="email" className="input input-bordered" required onChange={handleChange} />
@@ -35,7 +35,7 @@ const Login = () => {
             <label className="label"><span className="label-text">Password</span></label>
             <input type="password" name="password" placeholder="password" className="input input-bordered" required onChange={handleChange} />
             <label className="label">
-              <span className="label-text-alt">Don't have an account? <Link to="/register" className="link link-hover">Register</Link></span>
+              <span className="label-text-alt">Don't have an account? <Link to="/register" className="link link-primary">Register</Link></span>
             </label>
           </div>
           <div className="form-control mt-6">

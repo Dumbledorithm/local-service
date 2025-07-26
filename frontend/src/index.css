@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Swiper Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #3b82f6 !important; /* Your primary blue color */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #3b82f6 !important; /* Your primary blue color */
+}
