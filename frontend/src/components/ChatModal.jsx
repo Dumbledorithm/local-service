@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import { AuthContext } from '../context/AuthContext';
 import api from '../api';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://servicepro-10an.onrender.com');
 
 const ChatModal = ({ booking, onClose }) => {
   const { user } = useContext(AuthContext);
