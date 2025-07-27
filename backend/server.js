@@ -15,7 +15,7 @@ import serviceRoutes from './routes/serviceRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 
 
-const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
+const frontendURL = "https://servicepro-seven.vercel.app" || "http://localhost:5173";
 
  
 
