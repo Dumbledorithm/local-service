@@ -14,8 +14,15 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import serviceRoutes from './routes/serviceRoutes.js';
 import chatRoutes from './routes/chatRoutes.js';
 
+
+const frontendURL = process.env.FRONTEND_URL || "http://localhost:5173";
+
+
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: frontendURL,
+}
+));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
@@ -31,7 +38,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: frontendURL,
     methods: ["GET", "POST"]
   }
 });
