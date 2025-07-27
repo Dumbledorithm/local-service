@@ -24,33 +24,33 @@ const Register = () => {
 
   return (
     <div className="hero min-h-[80vh] py-12">
-      <div className="card w-full max-w-sm shrink-0 shadow-2xl bg-base-100">
+      <div className="card w-full max-w-sm shrink-0 shadow-2xl bg-neutral-light">
         <form className="card-body" onSubmit={handleSubmit}>
-          <h2 className="card-title text-3xl font-display font-bold">Create Account</h2>
+          <h2 className="card-title text-3xl font-display font-bold text-main-orange">Create Account</h2>
            <div className="form-control">
-            <label className="label"><span className="label-text">Name</span></label>
+            <label className="label"><span className="label-text text-main-orange">Name</span></label>
             <input type="text" name="name" placeholder="Full Name" className="input input-bordered" required onChange={handleChange} />
           </div>
           <div className="form-control">
-            <label className="label"><span className="label-text">Email</span></label>
+            <label className="label"><span className="label-text text-main-orange">Email</span></label>
             <input type="email" name="email" placeholder="email" className="input input-bordered" required onChange={handleChange} />
           </div>
           <div className="form-control">
-            <label className="label"><span className="label-text">Password</span></label>
+            <label className="label"><span className="label-text text-main-orange">Password</span></label>
             <input type="password" name="password" placeholder="password" className="input input-bordered" required minLength="6" onChange={handleChange} />
           </div>
           <div className="form-control mt-2">
-             <label className="label"><span className="label-text font-medium">Register As:</span></label>
+             <label className="label"><span className="label-text font-medium text-main-orange">Register As:</span></label>
             <div className="flex gap-4">
-              <label className="label cursor-pointer"><span className="label-text mr-2">User</span><input type="radio" name="role" value="user" className="radio radio-primary" checked={formData.role === 'user'} onChange={handleChange} /></label>
-              <label className="label cursor-pointer"><span className="label-text mr-2">Provider</span><input type="radio" name="role" value="provider" className="radio radio-primary" checked={formData.role === 'provider'} onChange={handleChange} /></label>
+              <label className="label cursor-pointer"><span className="label-text mr-2 text-main-orange">User</span><input type="radio" name="role" value="user" className="radio radio-main-orange" checked={formData.role === 'user'} onChange={handleChange} /></label>
+              <label className="label cursor-pointer"><span className="label-text mr-2 text-main-orange">Provider</span><input type="radio" name="role" value="provider" className="radio radio-main-orange" checked={formData.role === 'provider'} onChange={handleChange} /></label>
             </div>
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary" type="submit">Register</button>
+            <button className="btn manual-btn-primary" type="submit">Register</button>
           </div>
            <label className="label">
-              <span className="label-text-alt">Already have an account? <Link to="/login" className="link link-primary">Login</Link></span>
+              <span className="label-text-alt text-main-black">Already have an account? <Link to="/login" className="link link-primary">Login</Link></span>
             </label>
         </form>
       </div>

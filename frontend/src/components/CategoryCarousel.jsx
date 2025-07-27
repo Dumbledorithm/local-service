@@ -36,9 +36,9 @@ const CategoryCarousel = ({ setSelectedCategory, selectedCategory }) => {
           <SwiperSlide key={name} >
             <div 
               onClick={() => setSelectedCategory(name)}
-              className={`card card-compact cursor-pointer transition-all duration-300 ${selectedCategory === name ? 'bg-primary text-primary-content shadow-lg' : 'bg-base-100 shadow'}`}
+              className={`card card-compact cursor-pointer transition-all duration-300 ${selectedCategory === name ? 'bg-neutral-light text-main-black ' : 'bg-base-100 shadow'}`}
             >
-              <div className="card-body items-center text-center p-4">
+              <div className="card-body items-center text-center text-main-black p-4">
                 <img src={icon} alt={name} className="w-10 h-10" />
                 <h2 className="font-display text-base mt-2">{name}</h2>
               </div>

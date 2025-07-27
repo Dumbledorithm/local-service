@@ -26,16 +26,16 @@ const AddService = () => {
 
   return (
     <div className="container max-w-2xl mx-auto py-12 px-4">
-      <div className="card bg-base-100 shadow-xl">
+      <div className="card bg-neutral-light shadow-xl">
         <div className="card-body">
-          <h1 className="card-title text-3xl font-display font-bold mb-6">Add a New Service</h1>
+          <h1 className="card-title text-3xl font-display font-bold mb-6 text-main-orange">Add a New Service</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <input name="name" onChange={handleChange} placeholder="Service Name" className="input input-bordered w-full" required />
             <textarea name="description" onChange={handleChange} placeholder="Description" className="textarea textarea-bordered w-full" required />
             <input name="price" type="number" onChange={handleChange} placeholder="Price ($)" className="input input-bordered w-full" required />
             <input name="category" onChange={handleChange} placeholder="Category (e.g., Cleaning)" className="input input-bordered w-full" required />
             <input name="imageUrl" onChange={handleChange} placeholder="Image URL" className="input input-bordered w-full" required />
-            <button type="submit" className="btn btn-primary w-full mt-4">Add Service</button>
+            <button type="submit" className="btn manual-btn-primary w-full mt-4">Add Service</button>
           </form>
         </div>
       </div>

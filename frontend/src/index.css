@@ -1,6 +1,60 @@
+:root {
+  --main-black: #000000;
+  --main-orange: #732d08;
+  --text-dark: #1f2937;
+  --text-light: #d1d5db;
+  --bg-dark: #111827;
+  --bg-light: #ffffff;
+  --bg-neutral-light: #f3f4f6; /* A nice, soft grey */
+  --border-grey: #e5e7eb;
+  --bg-green : #f0fdf4
+}
+
+.manual-btn-primary{
+  background-color: var(--main-black) !important;
+  color: var(--text-light) !important;
+  border-color: var(--main-black) !important;
+}
+
+/* ... :root and body rules ... */
+
+.card-bg-light-grey {
+  background-color: var(--bg-neutral-light);
+}
+
+
+
+.text-main-black { color: var(--main-black); }
+.text-main-orange { color: var(--main-orange); }
+.text-dark { color: var(--text-dark); }
+.text-light { color: var(--text-light); }
+
+/* --- Background Color Classes --- */
+.bg-main-black { background-color: var(--main-black); }
+.bg-main-orange { background-color: var(--main-orange); }
+.bg-dark { background-color: var(--bg-dark); }
+.bg-light { background-color: var(--bg-light); }
+.bg-neutral-light { background-color: var(--bg-neutral-light); }
+.bg-green{background-color: var(--bg-green);}
+
+/* --- Border Color Classes --- */
+.border-grey { border-color: var(--border-grey); }
+.radio-main-orange {
+  --input-color:var(--main-orange)
+  border-color: var(--main-orange); /* Sets the border color for the UNCHECKED state */
+}
+.radio-main-orange:checked {
+  --input-color:var(--main-orange)
+  background-color: var(--main-orange);
+  border-color: var(--main-orange);
+}
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 .swiper-button-next,
@@ -11,3 +65,6 @@
 .swiper-pagination-bullet-active {
   background-color: #3b82f6 !important; 
 }
+
+
+/* ... your other helper classes and @tailwind directives ... */

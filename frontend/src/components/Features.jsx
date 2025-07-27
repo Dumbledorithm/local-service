@@ -3,13 +3,13 @@ import featureImg2 from '../assets/feature-ontime.png';
 import featureImg3 from '../assets/feature-pricing.png';
 
 const FeatureCard = ({ image, title, description }) => (
-  <div className="card bg-base-100 shadow-lg text-center overflow-hidden">
+  <div className="card bg-green  text-center overflow-hidden">
     <figure>
       <img src={image} alt={title} className="w-16 h-16 mb-4" />
     </figure>
     <div className="card-body">
-      <h2 className="card-title justify-center font-display">{title}</h2>
-      <p className="text-secondary/70">{description}</p>
+      <h2 className="card-title justify-center font-display text-main-orange">{title}</h2>
+      <p className="text-main-black">{description}</p>
     </div>
   </div>
 );
@@ -36,8 +36,8 @@ const Features = () => {
   return (
     <div className="bg-neutral/50 -mx-4 px-4 py-16 md:py-24">
         <div className="text-center mb-12">
-            <h2 className="text-4xl font-display font-bold text-secondary">Why Choose ServicePro?</h2>
-            <p className="text-lg mt-4 max-w-2xl mx-auto text-secondary/60">
+            <h2 className="text-4xl font-display font-bold text-main-orange">Why Choose ServicePro?</h2>
+            <p className="text-lg mt-4 max-w-2xl mx-auto text-main-black">
                 We are committed to providing a seamless and reliable experience for all your home service needs in Lucknow.
             </p>
         </div>

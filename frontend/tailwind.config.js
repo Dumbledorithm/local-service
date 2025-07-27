@@ -17,11 +17,19 @@ export default {
     themes: [
       {
         serviceproblue: {
-          "primary": "#3b82f6",
+          "primary": "#000000",
           "secondary": "#14b8a6",
           "accent": "#10b981",
           "neutral": "#f3f4f6",
           "base-100": "#ffffff",
+        },
+        serviceprodark: {
+          "primary": "#000000",           // Black
+          "primary-content": "#ffffff",   // White text on black buttons
+          "secondary": "#4b5563",         // A softer grey for secondary text
+          "accent": "#f97316",            // Vibrant Orange
+          "neutral": "#f3f4f6",           // Light grey background
+          "base-100": "#ffffff",          // White card/page backgrounds
         },
       },
     ],

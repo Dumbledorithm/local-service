@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import api from '../api';
-import { AuthContext } from '../context/AuthContext';
-import ChatModal from '../components/ChatModal';
+import api from '../../api';
+import { AuthContext } from '../../context/AuthContext';
+import ChatModal from '../../components/ChatModal';
 
-const MyBookings = () => {
+const ProviderBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user, token } = useContext(AuthContext);
@@ -12,22 +12,22 @@ const MyBookings = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
-    if (token) {
-      const fetchBookings = async () => {
+    if (token && user?.role === 'provider') {
+      const fetchProviderBookings = async () => {
         try {
-          const res = await api.get('/bookings/my-bookings');
+          const res = await api.get('/bookings/provider-bookings');
           setBookings(res.data);
         } catch (error) {
-          console.error('Failed to fetch bookings:', error);
+          console.error('Failed to fetch provider bookings:', error);
         } finally {
           setLoading(false);
         }
       };
-      fetchBookings();
+      fetchProviderBookings();
     } else {
       setLoading(false);
     }
-  }, [token]);
+  }, [token, user]);
 
   const openChat = (booking) => {
     setSelectedBooking(booking);
@@ -50,13 +50,13 @@ const MyBookings = () => {
   };
 
   if (loading) return <div className="text-center p-10"><span className="loading loading-lg text-primary"></span></div>;
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user || user.role !== 'provider') return <Navigate to="/login" replace />;
 
   return (
     <>
       <div className="bg-base-100 min-h-[85vh] -mt-20 pt-24">
         <div className="container mx-auto px-4 py-12">
-          <h1 className="text-4xl font-display font-bold text-main-orange mb-8">My Bookings</h1>
+          <h1 className="text-4xl font-display font-bold text-main-orange mb-8">Incoming Bookings</h1>
           
           {/* Desktop Table View */}
           <div className="hidden md:block overflow-x-auto shadow-xl rounded-box">
@@ -65,18 +65,18 @@ const MyBookings = () => {
               <tbody>
                 {bookings.map(booking => (
                   <tr key={booking._id} className="hover">
-                    <td className="font-semibold text-main-black">{booking.service?.name || 'N/A'}</td>
+                    <td className="font-semibold text-main-orange">{booking.user?.name || 'N/A'}</td>
+                    <td className="text-main-black">{booking.service?.name || 'N/A'}</td>
                     <td>
-                      <div>{new Date(booking.bookingDate).toLocaleDateString()}</div>
-                      <div className="text-sm">{new Date(booking.bookingDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                      <div className="text-main-black">{new Date(booking.bookingDate).toLocaleDateString()}</div>
+                      <div className="text-sm text-main-black">{new Date(booking.bookingDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
                     </td>
                     <td className="whitespace-normal text-main-black">{booking.address}</td>
                     <td>{getStatusBadge(booking.status)}</td>
-                    <td className="font-bold text-main-black">${booking.service?.price || 'N/A'}</td>
                     <td>
                       {booking.status === 'Confirmed' && (
                         <button onClick={() => openChat(booking)} className="btn manual-btn-primary btn-sm">
-                          Chat
+                          Chat with Customer
                         </button>
                       )}
                     </td>
@@ -93,10 +93,13 @@ const MyBookings = () => {
                 <div key={booking._id} className="card bg-neutral-light shadow-lg">
                   <div className="card-body">
                     <div className="flex justify-between items-start">
-                      <h2 className="card-title text-main-black">{booking.service?.name || 'N/A'}</h2>
+                      <div>
+                        <p className="text-xs">Customer</p>
+                        <h2 className="card-title text-main-orange -mt-1">{booking.user?.name || 'N/A'}</h2>
+                      </div>
                       {getStatusBadge(booking.status)}
                     </div>
-                    <p className="text-main-black font-bold">${booking.service?.price || 'N/A'}</p>
+                    <p className="font-semibold text-main-black">{booking.service?.name || 'N/A'}</p>
                     <div className="text-sm text-main-black mt-2">
                       <p>{new Date(booking.bookingDate).toLocaleString([], {dateStyle: 'medium', timeStyle: 'short'})}</p>
                       <p className="mt-1">{booking.address}</p>
@@ -104,7 +107,7 @@ const MyBookings = () => {
                     <div className="card-actions justify-end mt-4">
                       {booking.status === 'Confirmed' && (
                         <button onClick={() => openChat(booking)} className="btn manual-btn-primary btn-sm">
-                          Chat with Provider
+                          Chat with Customer
                         </button>
                       )}
                     </div>
@@ -122,4 +125,4 @@ const MyBookings = () => {
   );
 };
 
-export default MyBookings;
+export default ProviderBookings;

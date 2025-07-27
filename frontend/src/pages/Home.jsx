@@ -39,19 +39,19 @@ const Home = () => {
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-6xl font-display font-extrabold text-secondary leading-tight">
+              <h1 className="text-4xl md:text-6xl font-display font-extrabold text-main-orange leading-tight">
                 Services at Your Doorstep
               </h1>
-              <p className="mt-6 text-lg text-secondary/70">
+              <p className="mt-6 text-lg text-main-black">
                 Find and book trusted home services, from cleaning to repairs, all in one place in Lucknow.
               </p>
               <div className="mt-8 flex gap-4 justify-center md:justify-start">
-                <a href="#services-section" className="btn btn-primary">Explore Services</a>
-                <a href="/register" className="btn btn-outline btn-primary">Become a Provider</a>
+                <a href="#services-section" className="btn manual-btn-primary rounded-md">Explore Services</a>
+                <a href="/register" className="btn btn-outline manual-btn-primary rounded-md">Become a Provider</a>
               </div>
             </div>
             <div className="relative hidden md:block h-96 lg:h-[28rem]">
-              <img src={brushStroke} alt="Brush stroke" className="absolute inset-0 w-full h-full object-contain" />
+              <img src={brushStroke} alt="Brush stroke" className="absolute inset-0 w-full h-full object-contain translate-x-10" />
               <img src={professionalImg} alt="Service professional" className="absolute bottom-16 left-1/2 -translate-x-1/2 h-[95%] object-contain" />
             </div>
           </div>
@@ -59,7 +59,7 @@ const Home = () => {
       </div>
       <Features />
       <div id="services-section" className="text-center pt-16 scroll-mt-20">
-        <h2 className="text-4xl font-display font-bold text-secondary">Our Services</h2>
+        <h2 className="text-4xl font-display font-bold text-main-orange">Our Services</h2>
       </div>
       <CategoryCarousel selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="container mx-auto px-4">
@@ -80,7 +80,7 @@ const Home = () => {
                 <ServiceCard key={service._id} service={service} />
                 ))
             ) : (
-                <p className="col-span-full text-center text-lg text-secondary/70">No services found.</p>
+                <p className="col-span-full text-center text-lg text-main-black">No services found.</p>
             )}
             </div>
         )}
