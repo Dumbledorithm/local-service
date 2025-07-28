@@ -33,6 +33,12 @@ function App() {
               <Route path="/provider/add-service" element={<AddService />} />
             </Routes>
           </main>
+           {/* --- ADDED FOOTER SECTION --- */}
+           <footer className="footer footer-center p-4 bg-base-200 text-main-black">
+            <aside>
+              <p>Copyright © {currentYear} - All right reserved by Shardendu Mishra</p>
+            </aside>
+          </footer>
           <Toaster 
             position="bottom-right"
             toastOptions={{
