@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 import { AuthContext } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', role: 'user' });
@@ -18,7 +19,7 @@ const Register = () => {
       navigate('/');
     } catch (error) {
       console.error(error.response.data);
-      alert('Registration failed.');
+      toast.error('Registration failed.');
     }
   };
 

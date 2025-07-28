@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 import api from '../api';
 import { AuthContext } from '../context/AuthContext';
 
@@ -22,12 +23,12 @@ const ServiceCard = ({ service }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-        alert('Please log in to book a service.');
+        toast.error('Please log in to book a service.');
         navigate('/login');
         return;
     }
     if (user.role === 'provider') {
-        alert('Providers cannot book services.');
+        toast.error('Providers cannot book services.');
         return;
     }
 
@@ -35,7 +36,7 @@ const ServiceCard = ({ service }) => {
     
     // Frontend validation to check if the selected date is in the past
     if (selectedDateTime < new Date()) {
-      alert('You cannot book a service in the past. Please select a future date and time.');
+      toast.error('You cannot book a service in the past. Please select a future date and time.');
       return;
     }
 
@@ -47,13 +48,13 @@ const ServiceCard = ({ service }) => {
         bookingDate: selectedDateTime,
         address: bookingDetails.address,
       });
-      alert('Booking request sent successfully! You can check its status on the My Bookings page.');
+      toast.success('Booking request sent successfully! You can check its status on the My Bookings page.');
       setIsModalOpen(false);
       navigate('/my-bookings');
     } catch (error) {
       // Display specific error message from the backend if available (e.g., "Provider is already booked")
       const errorMessage = error.response?.data?.message || 'Failed to send booking request. Please ensure all fields are filled correctly.';
-      alert(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }

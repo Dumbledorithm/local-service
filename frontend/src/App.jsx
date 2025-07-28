@@ -8,6 +8,7 @@ import MyBookings from './pages/MyBookings';
 import ProviderDashboard from './pages/provider/ProviderDashboard';
 import ProviderBookings from './pages/provider/ProviderBookings.jsx';
 import AddService from './pages/provider/AddService';
+import { Toaster } from 'react-hot-toast'; 
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
@@ -32,6 +33,23 @@ function App() {
               <Route path="/provider/add-service" element={<AddService />} />
             </Routes>
           </main>
+          <Toaster 
+            position="bottom-right"
+            toastOptions={{
+              success: {
+                style: {
+                  background: '#dcfce7', // A light green
+                  color: '#166534',      // A dark green
+                },
+              },
+              error: {
+                style: {
+                  background: '#fee2e2', // A light red
+                  color: '#991b1b',      // A dark red
+                },
+              },
+            }}
+          />
         </div>
       </Router>
     </AuthProvider>

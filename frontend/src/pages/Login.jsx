@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
       navigate('/');
     } catch (error) {
       console.error(error.response.data);
-      alert('Login failed! Please check your credentials.');
+      toast.error('Login failed! Please check your credentials.');
     }
   };
 
