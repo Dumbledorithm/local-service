@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import api from '../api';
@@ -47,8 +48,8 @@ const Home = () => {
               </p>
               <div className="mt-8 flex gap-4 justify-center md:justify-start">
                 <a href="#services-section" className="btn manual-btn-primary rounded-md">Explore Services</a>
-                <a href="/register" className="btn btn-outline manual-btn-primary rounded-md">Become a Provider</a>
-              </div>
+                <Link to="/register" className="btn btn-outline manual-btn-primary rounded-md">Become a Provider</Link> 
+              </div> 
             </div>
             <div className="relative hidden md:block h-96 lg:h-[28rem]">
               <img src={brushStroke} alt="Brush stroke" className="absolute inset-0 w-full h-full object-contain translate-x-10" />
