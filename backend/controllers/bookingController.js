@@ -27,8 +27,6 @@ export const getServices = async (req, res) => {
 export const getMyBookings = async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user.id })
-      // This nested populate is the key fix.
-      // It gets the service, and FOR that service, it gets the provider's details.
       .populate({ 
         path: 'service', 
         populate: { path: 'provider', model: 'User', select: 'name' } 
@@ -54,12 +52,46 @@ export const createBooking = async (req, res) => {
   }
 
   try {
-    const service = await Service.findById(serviceId).populate('provider');
-    const customer = await User.findById(req.user.id);
+    // --- 1. VALIDATION ---
+    const requestedBookingDate = new Date(bookingDate);
 
+    // Check if the requested date is in the past
+    if (requestedBookingDate < new Date()) {
+      return res.status(400).json({ message: 'Booking date cannot be in the past.' });
+    }
+
+    const service = await Service.findById(serviceId).populate('provider');
     if (!service || !service.provider) {
       return res.status(404).json({ message: 'Service or provider not found' });
     }
+    
+    const providerId = service.provider._id;
+
+    // Define a service slot duration (e.g., 2 hours)
+    const serviceDuration = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+    const slotStartTime = requestedBookingDate;
+    const slotEndTime = new Date(requestedBookingDate.getTime() + serviceDuration);
+
+    // Find all services offered by this provider
+    const providerServices = await Service.find({ provider: providerId });
+    const providerServiceIds = providerServices.map(s => s._id);
+
+    // Check if the provider has any conflicting confirmed bookings
+    const conflictingBooking = await Booking.findOne({
+      service: { $in: providerServiceIds },
+      status: 'Confirmed',
+      bookingDate: {
+        $lt: slotEndTime,
+        $gte: new Date(slotStartTime.getTime() - serviceDuration)
+      }
+    });
+
+    if (conflictingBooking) {
+      return res.status(409).json({ message: 'Provider is already booked at this time. Please choose another slot.' });
+    }
+
+    // --- 2. CREATE BOOKING (if validation passes) ---
+    const customer = await User.findById(req.user.id);
 
     const newBooking = new Booking({
       user: req.user.id,
@@ -71,7 +103,7 @@ export const createBooking = async (req, res) => {
     
     const booking = await newBooking.save();
 
-    // Helper to create unique tokens for management links
+    // --- 3. SEND EMAIL ---
     const generateActionToken = (action) => {
         return jwt.sign({ bookingId: booking._id, action }, process.env.JWT_SECRET, { expiresIn: '7d' });
     };
@@ -79,10 +111,9 @@ export const createBooking = async (req, res) => {
     const acceptToken = generateActionToken('confirm');
     const rejectToken = generateActionToken('reject');
 
-    const acceptUrl = `https://servicepro-10an.onrender.com/api/bookings/manage/${acceptToken}`;
-    const rejectUrl = `https://servicepro-10an.onrender.com/api/bookings/manage/${rejectToken}`;
+    const acceptUrl = `https://servicepro-backend.onrender.com/api/bookings/manage/${acceptToken}`;
+    const rejectUrl = `https://servicepro-backend.onrender.com/api/bookings/manage/${rejectToken}`;
 
-    // Construct the email to be sent to the service provider
     const emailHtml = `
       <h1>New Booking Request</h1>
       <p>Hello ${service.provider.name},</p>
@@ -98,7 +129,6 @@ export const createBooking = async (req, res) => {
       <a href="${rejectUrl}" style="background-color: #ef4444; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-left: 10px;">Reject Booking</a>
     `;
 
-    // Send the email using the utility
     await sendEmail({
       to: service.provider.email,
       subject: `New Booking Request for ${service.name} from ServicePro`,
@@ -136,8 +166,6 @@ export const manageBooking = async (req, res) => {
         booking.status = action === 'confirm' ? 'Confirmed' : 'Rejected';
         await booking.save();
         
-        // Optionally, you could trigger another email here to notify the *user* of the status change.
-        
         res.send(`<h1>Booking successfully ${booking.status}!</h1><p>You can now close this window.</p>`);
 
     } catch (error) {
@@ -153,14 +181,12 @@ export const manageBooking = async (req, res) => {
  */
 export const getProviderBookings = async (req, res) => {
   try {
-    // Find all services offered by the current provider
     const services = await Service.find({ provider: req.user.id });
     const serviceIds = services.map(s => s._id);
 
-    // Find all bookings that are for any of those services
     const bookings = await Booking.find({ service: { $in: serviceIds } })
       .populate('service', 'name')
-      .populate('user', 'name') // Populate the customer's name
+      .populate('user', 'name')
       .sort({ createdAt: -1 });
       
     res.json(bookings);
