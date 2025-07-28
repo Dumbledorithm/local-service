@@ -67,8 +67,8 @@ const MyBookings = () => {
                   <tr key={booking._id} className="hover">
                     <td className="font-semibold text-main-black">{booking.service?.name || 'N/A'}</td>
                     <td>
-                      <div>{new Date(booking.bookingDate).toLocaleDateString()}</div>
-                      <div className="text-sm">{new Date(booking.bookingDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
+                      <div className="text-main-black">{new Date(booking.bookingDate).toLocaleDateString()}</div>
+                      <div className="text-sm text-main-black">{new Date(booking.bookingDate).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</div>
                     </td>
                     <td className="whitespace-normal text-main-black">{booking.address}</td>
                     <td>{getStatusBadge(booking.status)}</td>
