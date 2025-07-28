@@ -165,8 +165,10 @@ export const manageBooking = async (req, res) => {
 
         booking.status = action === 'confirm' ? 'Confirmed' : 'Rejected';
         await booking.save();
-        
-        res.send(`<h1>Booking successfully ${booking.status}!</h1><p>You can now close this window.</p>`);
+
+        const redirectUrl = `${process.env.FRONTEND_URL}/provider/bookings`;
+        return res.redirect(redirectUrl);
+      
 
     } catch (error) {
         console.error(error);
