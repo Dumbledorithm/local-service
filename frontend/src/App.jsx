@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
+  const currentYear = new Date().getFullYear();
   return (
     <AuthProvider>
       <Router>
