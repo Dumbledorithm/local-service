@@ -111,8 +111,8 @@ export const createBooking = async (req, res) => {
     const acceptToken = generateActionToken('confirm');
     const rejectToken = generateActionToken('reject');
 
-    const acceptUrl = `https://servicepro-backend.onrender.com/api/bookings/manage/${acceptToken}`;
-    const rejectUrl = `https://servicepro-backend.onrender.com/api/bookings/manage/${rejectToken}`;
+    const acceptUrl = `https://servicepro-10an.onrender.com/api/bookings/manage/${acceptToken}`;
+    const rejectUrl = `https://servicepro-10an.onrender.com/api/bookings/manage/${rejectToken}`;
 
     const emailHtml = `
       <h1>New Booking Request</h1>
