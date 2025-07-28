@@ -74,7 +74,7 @@ const ServiceCard = ({ service }) => {
           <h2 className="card-title font-display text-main-orange">{service.name}</h2>
           <p className="text-main-black flex-grow">{service.description}</p>
           <div className="card-actions justify-between items-center mt-4">
-            <p className="text-lg font-bold text-main-black">${service.price}</p>
+            <p className="text-lg font-bold text-main-black">Rs.{service.price}</p>
             <button onClick={() => user ? setIsModalOpen(true) : navigate('/login')} className="btn manual-btn-primary rounded-xl">
               Book Now
             </button>
