@@ -34,7 +34,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="bg-neutral/50 -mx-4 px-4 py-16 md:py-24">
+    <div className="bg-base-200 -mx-4 px-4 py-16 md:py-24">
         <div className="text-center mb-12">
             <h2 className="text-4xl font-display font-bold text-main-orange">Why Choose ServicePro?</h2>
             <p className="text-lg mt-4 max-w-2xl mx-auto text-main-black">

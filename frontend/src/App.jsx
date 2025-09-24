@@ -21,7 +21,7 @@ function App() {
           <Navbar />
         </div>
       </header>
-        <div className="flex flex-col min-h-screen bg-neutral/50 font-sans text-primary">
+        <div className="flex flex-col min-h-screen bg-base-100 font-sans text-primary">
           
           <main className="flex-grow">
             <Routes>

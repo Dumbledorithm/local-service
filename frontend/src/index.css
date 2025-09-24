@@ -1,52 +1,79 @@
+/* FORCE LIGHT MODE - Override everything */
+:root {
+  color-scheme: light !important;
+}
+
+/* Override system dark mode completely */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important;
+  }
+}
+
+/* Force white background everywhere */
+html, body, #root {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Force all containers to be white */
+* {
+  color-scheme: light !important;
+}
+
+[data-theme] {
+  background-color: #ffffff !important;
+}
+
+/* Custom color variables for your design */
 :root {
   --main-black: #000000;
   --main-orange: #732d08;
   --text-dark: #1f2937;
-  --text-light: #d1d5db;
-  --bg-dark: #111827;
+  --text-light: #ffffff;
   --bg-light: #ffffff;
-  --bg-neutral-light: #f3f4f6; /* A nice, soft grey */
+  --bg-neutral-light: #f3f4f6;
   --border-grey: #e5e7eb;
-  --bg-green : #f0fdf4
+  --bg-green: #f0fdf4;
 }
 
+/* Use your custom colors instead of DaisyUI */
 .manual-btn-primary{
   background-color: var(--main-black) !important;
   color: var(--text-light) !important;
   border-color: var(--main-black) !important;
 }
 
-/* ... :root and body rules ... */
-
 .card-bg-light-grey {
-  background-color: var(--bg-neutral-light);
+  background-color: var(--bg-neutral-light) !important;
 }
 
-
-
-.text-main-black { color: var(--main-black); }
-.text-main-orange { color: var(--main-orange); }
-.text-dark { color: var(--text-dark); }
-.text-light { color: var(--text-light); }
+/* Your custom color classes */
+.text-main-black { color: var(--main-black) !important; }
+.text-main-orange { color: var(--main-orange) !important; }
+.text-dark { color: var(--text-dark) !important; }
+.text-light { color: var(--text-light) !important; }
 
 /* --- Background Color Classes --- */
-.bg-main-black { background-color: var(--main-black); }
-.bg-main-orange { background-color: var(--main-orange); }
-.bg-dark { background-color: var(--bg-dark); }
-.bg-light { background-color: var(--bg-light); }
-.bg-neutral-light { background-color: var(--bg-neutral-light); }
-.bg-green{background-color: var(--bg-green);}
+.bg-main-black { background-color: var(--main-black) !important; }
+.bg-main-orange { background-color: var(--main-orange) !important; }
+.bg-light { background-color: var(--bg-light) !important; }
+.bg-neutral-light { background-color: var(--bg-neutral-light) !important; }
+.bg-green { background-color: var(--bg-green) !important; }
+
+/* Override any dark backgrounds */
+.bg-base-100 { background-color: #ffffff !important; }
+.bg-base-200 { background-color: #f9fafb !important; }
+.bg-neutral { background-color: #f3f4f6 !important; }
 
 /* --- Border Color Classes --- */
-.border-grey { border-color: var(--border-grey); }
+.border-grey { border-color: var(--border-grey) !important; }
 .radio-main-orange {
-  --input-color:var(--main-orange)
-  border-color: var(--main-orange); /* Sets the border color for the UNCHECKED state */
+  border-color: var(--main-orange) !important;
 }
 .radio-main-orange:checked {
-  --input-color:var(--main-orange)
-  background-color: var(--main-orange);
-  border-color: var(--main-orange);
+  background-color: var(--main-orange) !important;
+  border-color: var(--main-orange) !important;
 }
 
 
