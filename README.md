@@ -5,13 +5,13 @@ ServicePro is a robust MERN-stack platform designed to connect local residents w
 
 
 ## Core Features
-Live Booking Engine: Real-time service tracking from initial request to completion status.
+- Live Booking Engine: Real-time service tracking from initial request to completion status.
 
-Instant Messaging: A custom-built chat system for customers and providers to negotiate pricing and details securely.
+- Instant Messaging: A custom-built chat system for customers and providers to negotiate pricing and details securely.
 
-Secure RBAC: Role-Based Access Control using JWT, ensuring providers can't access customer-sensitive data and vice versa.
+- Secure RBAC: Role-Based Access Control using JWT, ensuring providers can't access customer-sensitive data and vice versa.
 
-Automated Confirmations: Integrated email triggers for booking milestones and payment receipts.
+- Automated Confirmations: Integrated email triggers for booking milestones and payment receipts.
 
 
 ## Tech Stack
@@ -37,7 +37,7 @@ JWT, Bcrypt, Role-based Middleware
 ### Clone the repository
 
 ```bash
-  git clone https://github.com/your-username/service-pro.git
+  git clone https://github.com/your-username/local-service.git
   cd service-pro
 ```
 ### Install dependencies 
