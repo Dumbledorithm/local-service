@@ -74,3 +74,22 @@ Create a .env file in the backend directory
 
 ### Live link 
 The website is live at <ins>https://servicepro-seven.vercel.app/</ins>
+
+
+### Screenshots
+
+<img width="1906" height="882" alt="image" src="https://github.com/user-attachments/assets/78a2100c-7bd4-428d-8b4c-4751259b6be2" />
+
+
+
+<img width="1898" height="885" alt="image" src="https://github.com/user-attachments/assets/37272a38-fde7-4d92-81ef-53b56e439727" />
+
+
+
+<img width="1896" height="903" alt="image" src="https://github.com/user-attachments/assets/ee960159-9f35-4d18-b76d-74a189b2b9fd" />
+
+
+
+
+
+
