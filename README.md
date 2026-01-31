@@ -67,9 +67,10 @@ Create a .env file in the backend directory
     cd backend
     npm run dev
 ```
-
 ```bash 
     cd frontend
     npm run dev
 ```
 
+### Live link 
+The website is live at <ins>https://servicepro-seven.vercel.app/</ins>
